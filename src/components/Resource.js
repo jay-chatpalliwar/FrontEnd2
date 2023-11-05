@@ -2,16 +2,65 @@ import React, { useEffect, useState } from 'react'
 import Sideb from '../components/Sideb'
 import Resourcecard from '../components/Resourcecard'
 import Facultyresourcecard from '../components/Facultyresourcecard'
-import Fileuploadc from '../components/Fileuploadc';
+import toast from 'react-hot-toast';
 const BASE_URL = process.env.BASE_URL;
 
 
 const Resource = () => {
-
+ const em = localStorage.getItem('email');
 
 const token = localStorage.getItem('token');
 const dummytags = ['ALL','DAA' , 'CD' , 'AI' , 'IOT' , 'IP']
-const role= "faculty";
+const [role,setrole]= useState('student');
+
+    const getprofile = async (e) => {
+    // login
+ try{ 
+   console.log("gp called")
+     const loadToast = toast.loading("Hang Up!");
+      const response = await fetch(`http://localhost:5000/getProfile`,{
+       method:'POST',
+       body:JSON.stringify({
+         email:em,
+         token:token
+       }),
+       headers:{
+         'Content-type': 'application/json; charset=UTF-8'       }
+      })
+      
+      const data = await response.json();
+     
+     
+      setTimeout(() => {
+        toast.dismiss(loadToast)
+      }, 1000);
+      
+      
+      
+      if(response.ok)
+      { 
+       
+        console.log(data.user)
+        
+         setrole(data.user.role)
+     
+        
+      }
+      else
+      {
+      setTimeout(()=>{toast.error(data.message)},1000);
+      
+      }
+    }
+    catch(e)
+    {
+      console.log("error at profile fetch - "+e);
+    }
+  };
+  
+  useEffect(()=>{getprofile()})
+  
+
 const id = '';
 const [resdata, setresdata] = useState([]);
 const [formdata,setformdata] = useState([{
@@ -45,7 +94,7 @@ const linkDeleter = (id)=>{
 
 const getResources = async()=>{
  try{
-    const response = await fetch(`http://localhost:4000/fetchResources`, {
+    const response = await fetch(`${BASE_URL}/fetchResources`, {
     method: 'GET', // HTTP request method
    headers: {
     'Content-Type': 'application/json', 
@@ -79,7 +128,7 @@ const postResource = async()=>{
 try
 {  
    
-   const response = await fetch(`http://localhost:4000/createResource` , {
+   const response = await fetch(`${BASE_URL}/createResource` , {
     method: 'POST', // HTTP request method
    headers: {
     'Content-Type': 'application/json', 

@@ -16,7 +16,7 @@ export default function Menu() {
    
   // fetchMessage();
   return (
-    <div class="flex flex-row mr-4 gap-1 overflow-hidden">
+    <div class="flex flex-row mr-4 gap-1 max-h-screen fixed">
       <aside
         id="default-sidebar"
         // class=" w-64 transition-transform -translate-x-full sm:translate-x-0"

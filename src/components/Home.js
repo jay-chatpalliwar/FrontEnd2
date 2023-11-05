@@ -11,9 +11,9 @@ import {GiGraduateCap} from 'react-icons/gi'
 
 const Home = () => {
   return (
-    <div className="ml-20">
+    <div className="ml-20 z-100">
       <div>
-      <NavLink to={"/"} className={`-ml-8 font-bold text-2xl drop-shadow-lg flex items-center mt-8 `}><span><GiGraduateCap className='text-blue-500 text-3xl'></GiGraduateCap></span><span className='text-blue-500'>Grade</span><span className='text-slate-800'>Sarthi</span></NavLink>
+      <NavLink to={"/"} className={`-ml-8 font-bold text-[40px] drop-shadow-lg flex items-center mt-8 `}><span><GiGraduateCap className='text-blue-500 text-[50px]'></GiGraduateCap></span><span className='text-blue-500'>Grade</span><span className='text-slate-800'>Sarthi</span></NavLink>
       </div>
       <Hero></Hero>
       <Testimonial></Testimonial>

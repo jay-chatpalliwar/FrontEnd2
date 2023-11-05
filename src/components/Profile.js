@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import Sideb from '../components/Sideb'
 import { Delete, EditIcon, SaveIcon } from 'lucide-react';
@@ -35,7 +34,7 @@ const Profile = () => {
  try{ 
    console.log("gp called")
      const loadToast = toast.loading("Hang Up!");
-      const response = await fetch(`http://localhost:4000/getProfile`,{
+      const response = await fetch(`http://localhost:5000/getProfile`,{
        method:'POST',
        body:JSON.stringify({
          email:em,
@@ -81,7 +80,7 @@ const Profile = () => {
  try{ 
    console.log("dp called")
      const loadToast = toast.loading("Hang Up!");
-      const response = await fetch(`http://localhost:4000/deleteProfile`,{
+      const response = await fetch(`http://localhost:5000/deleteProfile`,{
        method:'POST',
        body:JSON.stringify({
          email:em,
@@ -121,7 +120,7 @@ const Profile = () => {
  try{ 
    console.log("up called")
      const loadToast = toast.loading("Hang Up!");
-      const response = await fetch(`http://localhost:4000/updateProfile`,{
+      const response = await fetch(`http://localhost:5000/updateProfile`,{
        method:'POST',
        body:JSON.stringify({
          email:em,
@@ -132,7 +131,8 @@ const Profile = () => {
          branch,
          specialization,
          year,
-         sem:semester
+         sem:semester,
+         department
        }),
        headers:{
          'Content-type': 'application/json; charset=UTF-8'       }
@@ -385,14 +385,14 @@ const Profile = () => {
           
           {role==="faculty" ||role==="teacher" ?<div className=' flex flex-col gap-1'>
           <div className='font-bold text-lg'>Department</div>
-          <div className='font-bold text-gray-700'>{user.department?<>{user.department}</> :<>---</>}</div>
+          <div className='font-bold text-gray-700'>{user.branch?<>{branch}</> :<>---</>}</div>
           </div> : <></>} 
      
-          { <div className=' flex flex-col gap-1'>
+          {role==="student" ?<div className=' flex flex-col gap-1'>
           <div className='font-bold text-lg'>Semester</div>
           {console.log("sem"+semester)}
           <div className='font-bold text-gray-700'>{semester?<>{semester}</> :<>---</>}</div>
-          </div> }
+          </div>:<></> }
      
           {role==="student" ?<div className=' flex flex-col gap-1'>
           <div className='font-bold text-lg'>Academic year</div>
@@ -411,7 +411,7 @@ const Profile = () => {
           
           {role==="faculty" ||role==="teacher"  ?<div className=' flex flex-col gap-1'>
           <div className='font-bold text-lg'>Specialization</div>
-          <div className='font-bold text-gray-700'>{user.specialization}</div>
+          <div className='font-bold text-gray-700'>{specialization}</div>
           </div> : <></>} 
       </div>
     }
@@ -510,15 +510,16 @@ const Profile = () => {
     <div className='flex flex-col gap-2'>
     {
       <div>
-          {role==="student"?<div className=' flex flex-col gap-1'>
-          <div className='font-bold text-lg'>Branch</div>
+          {(role==="student"||role==="faculty")?<div className=' flex flex-col gap-1'>
+          {role==="student" && <div className='font-bold text-lg'>Branch</div>}
+          {(role==="faculty" || role==="teacher") && <div className='font-bold text-lg'>Department</div>}
           <input type='text'  className='font-bold text-gray-700' onChange={handleBranchChange} value={branch} ></input>
           </div>:<></>}
           
-          {role==="faculty" ?<div className=' flex flex-col gap-1'>
-          <div className='font-bold text-lg'>Department</div>
+          {/* {role==="faculty" ?<div className=' flex flex-col gap-1'>
+          <div className='font-bold text-lg'>Department</div> 
           <input type='text'  className='font-bold text-gray-700' onChange={handleDepartmentChange} value={department} ></input>
-          </div> : <></>} 
+          </div> : <></>}  */}
      
           {role==="student" ? <div className=' flex flex-col gap-1'>
           <div className='font-bold text-lg'>Semester</div>

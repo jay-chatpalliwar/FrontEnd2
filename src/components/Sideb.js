@@ -18,7 +18,7 @@ const Sideb = () => {
   
   const navigate= useNavigate();
   return (
-    <div className="flex h-screen sticky top-0">
+    <div className="flex max-h-screen fixed top-0 left-0">
       <div
         className={` ${
           open ? "w-68" : "w-20 "

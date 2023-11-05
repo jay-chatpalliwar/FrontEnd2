@@ -6,29 +6,44 @@ import Sideb from './components/Sideb'
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Navbar from "./components/Navbar";
+import Piechart from "./components/Piechart";
+// import Navbar from "./components/Navbar";
+// import Profile from './pages/Profile'
+// import Resource from './pages/Resource'
 import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector';
 // import EmojiPicker from 'emoji-picker-react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // import { LogIn } from 'lucide-react';
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
 
-// import Resource from "./pages/Resource";
-// import Profile from "./pages/Profile";
+import Resource from "./components/Resource";
+import Profile from "./components/Profile";
 
 function App() {
 
-  const [val,setVal] = useState(false);
+  const [val,setVal] = useState("ml-52");
   const location = useLocation();
   const data = useSelector((state) => state.name.name);
-  console.log("name is ",data);
-  console.log(data);
-  const user = "Jay Chatpalliwar";
+  // console.log("name is ",data);
+  // console.log(location.pathname);
+  useEffect(() =>{
+
+    if(location.pathname === "/" || location.pathname === "/login" || location.pathname === "/signup")
+    setVal("");
+  
+  else
+  setVal("ml-52")
+
+  console.log("useEffect")
+  console.log(location.pathname)
+  console.log(val)
+},[location.pathname])
+  const user = data.payload || "Jay Chatpalliwar";
   return (
-    <div className="flex flex-row gap-1 overflow-hidden scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-700 scrollbar-track-slate-300 ">
+    <div className={`flex ${val} flex-row gap-1 relative overflow-y-hidden scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar scrollbar-thumb-slate-700 scrollbar-track-slate-300`}>
       {location.pathname === "/dashboard" &&
       <Sideb/>}  
       {location.pathname === "/doubtforum" &&
@@ -37,11 +52,14 @@ function App() {
     <Route path="/">
           {/* <Route index element={<Home />} /> */}
           <Route path="doubtforum" element={<Forum user={user} />}/>
-          <Route path="dashboard" element={<Dashboard/>} />
+          <Route path="dashboard" element={<Dashboard user={user}/>} />
 
           <Route path="" element={<Home/>} />
           <Route path="signup" element={<SignUp/>} />
           <Route path="login" element={<Login/>} />
+          <Route path="piechart" element={<Piechart/>} />
+          <Route path="resources" element={<Resource/>} />
+          <Route path="profile" element={<Profile/>} />
 
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>

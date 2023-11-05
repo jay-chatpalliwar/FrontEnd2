@@ -83,7 +83,7 @@ export default function Text(props) {
         onChange = {(e) => setMessage(e.target.value)}
         ></textarea>
 
-      <button onClick = {handleClick}>
+      <button onClick = {handleClick} onKey = {handleClick}>
         <svg
           class="w-6 h-6 dark:text-white rotate-90 text-blue-600 ml-4"
           aria-hidden="true"
