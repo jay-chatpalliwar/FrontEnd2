@@ -12,8 +12,8 @@ const Sideb = () => {
     { title: "Resources", src: BookOpenIcon, gap: true ,link: '/resources'},
     { title: "Blogs ", src: FileBoxIcon,link:'/blogs' },
     { title: "Doubt forum", src: Users2 ,link:'/doubtforum'},
-    { title: "Contact us", src: PhoneCallIcon ,link:'/contact' },
-    { title: "Log out", src: LogOut, gap: true,link:'/' },
+    { title: "Contact us", src: PhoneCallIcon ,link:'/contactus' },
+    // { title: "Log out", src: LogOut, gap: true,link:'/' },
   ];
   
   const navigate= useNavigate();
@@ -45,6 +45,18 @@ const Sideb = () => {
               </span>
             </li>
           ))}
+          <li
+              key={6}
+              className={`flex font-semibold text-lg  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300  items-center gap-x-4 
+              ${true ? "mt-9" : "mt-2"} ${
+                active === 6 && "bg-light-white"
+              } `} onClick={()=>{setactive(6) ; navigate("/"); localStorage.removeItem("email");localStorage.removeItem("token");}}
+            >
+              <LogOut/>
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                LogOut
+              </span>
+            </li>
         </ul>
       </div>
     </div>

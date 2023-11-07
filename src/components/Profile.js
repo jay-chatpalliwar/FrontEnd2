@@ -34,7 +34,7 @@ const Profile = () => {
  try{ 
    console.log("gp called")
      const loadToast = toast.loading("Hang Up!");
-      const response = await fetch(`http://localhost:5000/getProfile`,{
+      const response = await fetch(`http://localhost:4000/getProfile`,{
        method:'POST',
        body:JSON.stringify({
          email:em,
@@ -80,7 +80,7 @@ const Profile = () => {
  try{ 
    console.log("dp called")
      const loadToast = toast.loading("Hang Up!");
-      const response = await fetch(`http://localhost:5000/deleteProfile`,{
+      const response = await fetch(`http://localhost:4000/deleteProfile`,{
        method:'POST',
        body:JSON.stringify({
          email:em,
@@ -120,7 +120,7 @@ const Profile = () => {
  try{ 
    console.log("up called")
      const loadToast = toast.loading("Hang Up!");
-      const response = await fetch(`http://localhost:5000/updateProfile`,{
+      const response = await fetch(`http://localhost:4000/updateProfile`,{
        method:'POST',
        body:JSON.stringify({
          email:em,
@@ -176,7 +176,7 @@ const Profile = () => {
  try{ 
    console.log("ps called")
      const loadToast = toast.loading("Hang Up!");
-      const response = await fetch(`http://localhost:5000/change-password`,{
+      const response = await fetch(`http://localhost:4000/change-password`,{
        method:'POST',
        body:JSON.stringify({
          email:em,

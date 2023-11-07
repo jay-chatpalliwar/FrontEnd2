@@ -7,6 +7,10 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Piechart from "./components/Piechart";
+import Blogs from './components/Blogs';
+import Post from './components/Post';
+import AddPost from './components/AddPost';
+import Contact from './components/ContactUs'
 // import Navbar from "./components/Navbar";
 // import Profile from './pages/Profile'
 // import Resource from './pages/Resource'
@@ -48,6 +52,14 @@ function App() {
       <Sideb/>}  
       {location.pathname === "/doubtforum" &&
       <Sideb/>}  
+      {location.pathname === "/blogs" &&
+      <Sideb/>}  
+      {location.pathname === "/blogs/create" &&
+      <Sideb/>}  
+      {location.pathname === "/blogs/:postId" &&
+      <Sideb/>}  
+      {location.pathname === "/contactus" &&
+      <Sideb/>}  
     <Routes>
     <Route path="/">
           {/* <Route index element={<Home />} /> */}
@@ -60,6 +72,10 @@ function App() {
           <Route path="piechart" element={<Piechart/>} />
           <Route path="resources" element={<Resource/>} />
           <Route path="profile" element={<Profile/>} />
+          <Route path="/blogs/create" element={<AddPost />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blog/:postId" element={<Post />} />
+          <Route path="contactus" element={<Contact />} />
 
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>

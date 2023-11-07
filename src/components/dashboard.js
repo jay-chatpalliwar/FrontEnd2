@@ -1,6 +1,6 @@
 import {useLocation} from 'react-router-dom';
 import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector';
-import Calendar from 'react-calendar';
+import Calendar from 'moedim';
 import {LuBookOpenCheck} from 'react-icons/lu'
 import {SiGoogleclassroom} from 'react-icons/si'
 import {FaAccessibleIcon, FaRegClock} from 'react-icons/fa'
@@ -30,6 +30,11 @@ ChartJs.register(
     const data = useSelector((state) => state.name.name);
     console.log("name is ",data);
     const name = data.payload || "Jay Chatpalliwar"
+
+    // let token = localStorage.getItem("token");
+
+    // if(token === null || token === undefined)
+        
     return (
         <div className="dashboard flex flex-col justify-end h-[590px] w-full mx-5 my-8 relative overflow-hidden bg-[#FFFBF5]">
 
@@ -80,7 +85,7 @@ ChartJs.register(
             </div>
                 
             </div>
-            <Calendar className="react-calendar h-[80%] mt-12"></Calendar>
+            <Calendar className="react-calendar h-[75%] mt-12"></Calendar>
             </div>
 
 
